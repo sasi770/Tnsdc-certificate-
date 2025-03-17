@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Viewer</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+        .certificate {
+            width: 80%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 10px solid #000;
+            background: #fff;
+            display: none;
+        }
+        .certificate h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .certificate h2 {
+            font-size: 24px;
+            color: #555;
+        }
+        .certificate p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .signature {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .signature div {
+            width: 40%;
+            text-align: center;
+            border-top: 2px solid black;
+            padding-top: 5px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Certificate Details</h1>
+    <input type="text" id="name" placeholder="Enter Recipient Name">
+    <input type="text" id="course" placeholder="Enter Course Name">
+    <input type="date" id="date">
+    <button onclick="viewCertificate()">View Certificate</button>
+
+    <div class="certificate" id="certificate">
+        <h1>Certificate of Achievement</h1>
+        <h2>This is to certify that</h2>
+        <h2><strong id="certName"></strong></h2>
+        <p>has successfully completed the program</p>
+        <h2><strong id="certCourse"></strong></h2>
+        <p>on this day, <span id="certDate"></span></p>
+        <div class="signature">
+            <div>
+                <p>Authorized Signatory</p>
+            </div>
+            <div>
+                <p>Instructor/Director</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function viewCertificate() {
+            let name = document.getElementById("name").value;
+            let course = document.getElementById("course").value;
+            let date = document.getElementById("date").value;
+
+            if (name && course && date) {
+                document.getElementById("certName").innerText = name;
+                document.getElementById("certCourse").innerText = course;
+                document.getElementById("certDate").innerText = new Date(date).toDateString();
+                document.getElementById("certificate").style.display = "block";
+            } else {
+                alert("Please fill in all fields");
+            }
+        }
+    </script>
+</body>
+</html>
